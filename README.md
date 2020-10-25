@@ -48,6 +48,38 @@ hist(diamonds$carat, nclass = 50, main = "Weight of the Carats")
 hist(diamonds$price, nclass = 20, main = "Diamond Prices")
 ```
 
+```{r}
+### Scatter plot for x and z in the diamond dataset
+plot(diamonds$x, diamonds$z, xlab = "x", ylab = "z", main = "Scatter plot for x and z" )
+```
+
+```{r}
+### Boxplot of carat and cut, and of color of the diamonds
+boxplot(diamonds$carat~diamonds$cut, xlab = "carat", ylab ="cut" )
+boxplot(diamonds$carat~diamonds$color, xlab = "carat", ylab ="color" )
+```
+```{r}
+### Chi Square for cut and color.It doesnt matter about the position. 
+chisq.test(table(diamonds$cut,diamonds$color))
+chisq.test(table(diamonds$color,diamonds$cut))
+```
+
+```{r}
+### Pearson correlation the quantitative variables
+cor(diamonds$x, diamonds$y, use = "complete.obs")
+cor(diamonds$y, diamonds$z, use = "complete.obs")
+cor(diamonds$x, diamonds$z, use = "complete.obs")
+cor(diamonds$carat, diamonds$z, use = "complete.obs")
+cor(diamonds$carat, diamonds$depth, use = "complete.obs")
+```
+
+```{r}
+### Anova between cut and carat, and with color.
+anova(lm(diamonds$carat~diamonds$cut))
+anova(lm(diamonds$carat~diamonds$color))
+```
+
+
 ### Working with Mtcars dataset.
 ```{r}
 head(mtcars)
@@ -69,3 +101,5 @@ patr<- hist(mtcars$hp, breaks = 20, col = "blue", main = " Histogram of Car Hors
 boxplot(drat~cyl, data = mtcars, xlab = "Cylinders", ylab = "Frequency", main= "Boxplot of Real axel ratio on Cylinder", col="green")
 
 ```
+
+
