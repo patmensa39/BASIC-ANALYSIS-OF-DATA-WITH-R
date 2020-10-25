@@ -1,5 +1,5 @@
-# BASIC-ANALYSIS-OF-DATA-WITH-R
-Creating charts, graphs and charts with mtcars and diamond datasets
+# ANALYSIS-OF-DATA-WITH-R
+Creating charts, graphs and charts with mtcars, diamond and facebook datasets
 ---
 title: "Diamond datasets"
 output:
@@ -13,7 +13,7 @@ theme: cerulean
 
 ## Name: PROJECT 6
 
-### Analyzing  the diamond and mtcars  dataset geneated from extrated from Kaggle and R inbuilt data respectively.
+### Analyzing  the diamond, mtcars and fake facebook dataset geneated from extrated from Kaggle and R inbuilt data respectively.
 
 ```{r}
 diamonds<- read.csv("diamonds.csv", header = TRUE, sep = ",")
@@ -99,7 +99,26 @@ patr<- hist(mtcars$hp, breaks = 20, col = "blue", main = " Histogram of Car Hors
 ```{r}
 ### Boxplot
 boxplot(drat~cyl, data = mtcars, xlab = "Cylinders", ylab = "Frequency", main= "Boxplot of Real axel ratio on Cylinder", col="green")
-
 ```
+
+### Working with facebok dataset.
+```{r}
+facebook<- read.table("pseudo_facebook.txt", header = TRUE, sep = "\t")
+summary(facebook)
+plot(facebook$age, facebook$friend_count, xlab = "Age", ylab = "friends_count", pch=20, col="blue")
+
+### Limiting the x variable (age) from 15 to 70 and y variable from 200 to 4000.
+plot(facebook$age, facebook$friend_count, xlab = "Age", ylab = "friends_count", pch=20, col="blue", xlim =c(15,70), ylim = c(200,4000))
+
+### Reducing over-plotting by adding some jitters to the the age and friends_count variables.
+plot(jitter(facebook$age, amount = 0.20), jitter(facebook$friend_count, amount = 0.25), xlab = "Age", ylab = "friends_count", pch=20, col="blue", xlim =c(15,70), ylim = c(200,4000))
+
+### Adding some transparency.
+plot(jitter(facebook$age, amount = 0.20), jitter(facebook$friend_count, amount = 0.25), xlab = "Age", ylab = "friends_count", pch=20, col=gray(0.5, alpha = 0.05), xlim =c(15,70), ylim = c(200,4000))
+
+### Transforming the data on a log scale. 
+plot(jitter(facebook$age, amount = 0.20), jitter(facebook$friend_count, amount = 0.25), xlab = "Age", ylab = "friends_count", pch=20, col=gray(0.5, alpha = 0.05), xlim =c(15,70), ylim = c(200,4000), log = 'x')
+```
+
 
 
